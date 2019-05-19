@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings} 
+\renewcommand{\lstlistingname}{Funkcja}
+
+\lstset{language=C++,
+numbers=left}
+
+
+\author{Dominik Doberski, Artur Olejnik}
+\title{\huge Sprawozdanie \\ Przetwarzanie równoległe\\ \Huge Projekt 1 OMP
+}
+
+
+
+\begin{document}
+\maketitle
+
+\section{Wstęp}
+\subsection{Temat}
+Mnożenie macierzy - porównanie efektywności metod --
+\begin{itemize}
+\item 3 pętle - kolejność pętli: jik, podział pracy przed pętlą 1
+\item 6 pętli -kolejność pętli: zewnętrznych ijk, wewnętrznych: ii,kk,jj podział pracy przed pętlą 2.
+\end{itemize}
+\subsection{Autorzy}
+\begin{minipage}[t]{0.3\textwidth}
+% Pierwsza kolumna (średnia)
+Artur Olejnik\\
+Dominik Doberski
+\end{minipage}
+\begin{minipage}[t]{0.15\textwidth}
+% Druga kolumna (mniejsza)
+122402\\
+111111
+\end{minipage}
+\begin{minipage}[t]{0.55\textwidth}
+% Trzecia kolumna (mniejsza)
+artur.olejnik@student.put.poznan.pl\\
+dominik.doberski@student.put.poznan.pl
+\end{minipage}
+\\\\\\
+Grupa dziekańska I3\\
+Termin zajęć: poniedziałek 16:50 
+\subsection{Opis systemu obliczeniowego}
+Do wykonania pomiarów wykorzystano program CodeXL. Testy zrealizowano na jednostce obliczeniowej o poniższej specyfikacji:
+\begin{itemize}
+\item Nazwa: AMD FX-6300 Black Edition
+\item Częstotliwość taktowania: 3.5 GHz (max 3.8 GHz)
+\item Liczba procesorów fizycznych: 6
+\item Liczba procesorów logicznych: 6
+\item Liczba uruchamianych w systemie wątków: 6
+\item Wielkość i organizacja pamięci podręcznych procesora:\\
+L1 dane: 6x16KB\\
+L1 instrukcje: 3x64KB\\
+L2: 3x2MB\\
+L3: 8MB\\
+\end{itemize}
+
+\section{Analiza algorytmu}
+\subsection{Analiza kodu}
+\begin{lstlisting}[
+caption={3 pętle -- jik},
+label=first,
+firstnumber=1]
+void multiply_matrices_JIK() {
+#pragma omp parallel
+#pragma omp for 
+ for (int j = 0; j < ROWS; j++){
+  for (int i = 0; i < ROWS; i++){
+   for (int k = 0; k < ROWS; k++){
+    matrix_r[i][j] += matrix_a[i][k] * matrix_b[k][j];
+   }
+  }
+ }
+}
+\end{lstlisting}
+W powyższej funkcji pętla w 6. wierszu iteruje po kolumnach macierzy A i po wierszach macierzy B. Iloczyn tych dwóch elementów jest dodawany do pojedynczego elementu macierzy R znajdującego się w i-tym wierszu i j-tej kolumnie, które są wyznaczane w pętlach odpowiednio 5. i 4. wierszu. Złożoność algorytmu wynosi $O(n^3)$. Dyrektywy OpenMP w 2. i 3. wierszu wykorzystano do 
+\begin{lstlisting}[
+caption={6 pętli -- zewnętrzne ijk, wewnętrzne ii,kk,jj},
+label=first,
+firstnumber=12]
+void multiply_matrices_6(int R){
+#pragma omp parallel
+ for (int i = 0; i < ROWS; i += R) {
+#pragma omp for
+  for (int j = 0; j < ROWS; j += R) {
+   for (int k = 0; k < ROWS; k += R) {
+    for (int ii = i; ii < i + R; ii++) {
+     for (int kk = k; kk < k + R; kk++) {
+      for (int jj = j; jj < j + R; jj++) {
+       matrix_r[ii][jj] += matrix_a[ii][kk] * matrix_b[kk][jj];
+      }
+     }
+    }
+   }
+  }
+ }	
+}
+\end{lstlisting}
+
+
+
+\section{Analiza przetwarzania}
+\subsection{Przebieg}
+asdf
+\subsection{Wyniki}
+asdf
+\subsection{Prezentacja wzorców}
+asdf
+\subsection{Miary przetwarzania}
+asdf
+
+\section{Wnioski}
+Chujowy projekt.
+
+\subsection{Wypunktowania}
+To jest wypunktowanie:
+\begin{itemize}
+\item punkt
+\item punkt
+\item punkt
+\end{itemize}
+\subsection{Wyliczenie}
+To jest wyliczenie:
+\begin{enumerate}
+\item pierwszy,
+\item drugi,
+\item trzeci.
+\end{enumerate}
+\subsection{Wykres}
+Na Rysunku~\ref{fig:wykres} znajduje się przykładowy wykres.
+\subsection{Wzory}
+\begin{equation}
+2 + 2 = 4
+\end{equation}
+\begin{equation}
+E = mc^2
+\end{equation}
+\begin{equation}
+\left[- \frac{\hbar^2}{2M} + V(X) \right] \Psi(x)=  \mathcal{E} \Psi(x)
+\end{equation}
+
+\section{Podsumowanie}
+
+\end{document}
