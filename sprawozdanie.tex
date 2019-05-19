@@ -1,4 +1,4 @@
-\documentclass{article}
+ \documentclass{article}
 
 \usepackage{polski}
 \usepackage[utf8]{inputenc}
@@ -36,7 +36,7 @@ Dominik Doberski
 \begin{minipage}[t]{0.15\textwidth}
 % Druga kolumna (mniejsza)
 122402\\
-111111
+132207
 \end{minipage}
 \begin{minipage}[t]{0.55\textwidth}
 % Trzecia kolumna (mniejsza)
@@ -79,7 +79,7 @@ void multiply_matrices_JIK() {
  }
 }
 \end{lstlisting}
-W powyższej funkcji pętla w 6. wierszu iteruje po kolumnach macierzy A i po wierszach macierzy B. Iloczyn tych dwóch elementów jest dodawany do pojedynczego elementu macierzy R znajdującego się w i-tym wierszu i j-tej kolumnie, które są wyznaczane w pętlach odpowiednio 5. i 4. wierszu. Złożoność algorytmu wynosi $O(n^3)$. Dyrektywy OpenMP w 2. i 3. wierszu wykorzystano do 
+W powyższej funkcji pętla w 6. wierszu iteruje po kolumnach macierzy A i po wierszach macierzy B. Iloczyn tych dwóch elementów jest dodawany do pojedynczego elementu macierzy R znajdującego się w i-tym wierszu i j-tej kolumnie, które są wyznaczane w pętlach odpowiednio 5. i 4. wierszu. Złożoność algorytmu wynosi $O(n^3)$. Dyrektywy OpenMP w 2. i 3. wierszu wykorzystano do uruchomienia kodu na wielu wątkach, oraz podzielenia przetwarzania pętli na te wątki.
 \begin{lstlisting}[
 caption={6 pętli -- zewnętrzne ijk, wewnętrzne ii,kk,jj},
 label=first,
