@@ -154,7 +154,12 @@ Powyższy rysunek przedstawia, które elementy każdej z 3 macierzy są brane po
 
 \section{Analiza przetwarzania}
 \subsection{Przebieg}
-asdf
+Instancja graniczna
+
+Dla danego problemu istnieje instancja graniczna, ze względu na ograniczoną pojemność pamięci podręcznej L3. Zastosowana pamięć L3 w procesorze ma pojemność 8 MB. Przekroczenie pojemności tej pamięci powoduje znaczne spowolnienie działania algorytmu. Zmiennych typu float (rozmiar 4B) na których przeprowadzane są obliczenia, możemy przechować: 
+\[ 8MB/4B = 2 * 1024 * 1024 = 2097152 \]
+Pamięć L3 jest współdzielona przez wszystkie rdzenie procesora, więc dane które nie mieszczą się w L3, muszą zostać przeniesione do pamięci RAM, co powoduje zwiększenie czasu przetwarzania.
+
 \subsection{Wyniki}
 asdf
 \subsection{Prezentacja wzorców}
