@@ -160,6 +160,16 @@ Dla danego problemu istnieje instancja graniczna, ze względu na ograniczoną po
 \[ 8MB/4B = 2 * 1024 * 1024 = 2097152 \]
 Pamięć L3 jest współdzielona przez wszystkie rdzenie procesora, więc dane które nie mieszczą się w L3, muszą zostać przeniesione do pamięci RAM, co powoduje zwiększenie czasu przetwarzania.
 
+W wersji algorytmu 3 pętlowej, każdy wątek musi załadować do pamięci kolumnę macierzy wynikowej R, całą macierz A oraz kolumnę macierzy B.
+Należy zatem posłużyć się wzorem:
+\[ 4 * n_R + n_A^2 + 4 * n_B < 2097152 \]
+
+Wynikiem jest:
+\[ n_R = n_A =  n_B = 1444\]
+
+Aby zaobserwować spadek prędkości, eksperyment zostanie przeprowadzony na dwóch rozmiarach instancji: 1400 oraz 1500.
+
+
 \subsection{Wyniki}
 asdf
 \subsection{Prezentacja wzorców}
