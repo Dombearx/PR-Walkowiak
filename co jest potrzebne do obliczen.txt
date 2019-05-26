@@ -1,0 +1,27 @@
+potrzebne
+
+-czas -----------OK
+-rozmiar macierzy -----------OK
+-IPC –liczba instrukcji na cykl procesora  Instruction per Cycle
+	IPC = RetiredInstructions–liczba instrukcji w przebiegu kodu  użytkownika / CPU ClocksNot Halted–liczba cykli procesora/ów wykonującego kod użytkownika
+	
+	
+-Data Cache miss ratio - jest to stosunek nietrafień do pamięci podręcznej do dostępów
+zrealizowanych.
+	-DATA CACHE ACCESS ----------OK
+	-DATA CACHE MISSES 
+
+	Data Cache miss rate to stosunek nietrafień do pamięci podręcznej i wykonanych
+instrukcji
+
+L2 DTLB miss rate= DTLB_L1M_L2M /DC access
+
+L2 DTLB miss ratio= brak trafienia L1 i odwołanie do L2
+
+------------------
+	-DATA CACHE ACCESS ----------OK
+	-DATA CACHE MISSES 
+	-RetiredInstructions–liczba
+	-CPU ClocksNot Halted
+	-DTLB_L1M_L2MISS
+	-DTLB_L1M_L2HIT

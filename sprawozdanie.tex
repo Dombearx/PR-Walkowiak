@@ -162,12 +162,12 @@ Pamięć L3 jest współdzielona przez wszystkie rdzenie procesora, więc dane k
 
 W wersji algorytmu 3 pętlowej, każdy wątek musi załadować do pamięci kolumnę macierzy wynikowej R, całą macierz A oraz kolumnę macierzy B.
 Należy zatem posłużyć się wzorem:
-\[ 4 * n_R + n_A^2 + 4 * n_B < 2097152 \]
+\[ n_R + n_A^2 + n_B < 2097152 \]
 
 Wynikiem jest:
-\[ n_R = n_A =  n_B = 1444\]
+\[ n_R = n_A = n_B = 1447\]
 
-Aby zaobserwować spadek prędkości, eksperyment zostanie przeprowadzony na dwóch rozmiarach instancji: 1400 oraz 1500.
+Aby zaobserwować spadek prędkości, eksperyment zostanie przeprowadzony na dwóch rozmiarach instancji: 1400,  1500 oraz 1600.
 
 
 \subsection{Wyniki}
