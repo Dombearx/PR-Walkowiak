@@ -52,9 +52,9 @@ Termin zajęć: poniedziałek 16:50
 \subsection{Opis systemu obliczeniowego}
 Do wykonania pomiarów wykorzystano program CodeXL. Testy zrealizowano na jednostce obliczeniowej o poniższej specyfikacji:
 \begin{itemize}
-\item Nazwa: AMD FX-6300 Black Edition
+\item Nazwa: AMD FX-6300
 \item Częstotliwość taktowania: 3.5 GHz (max 3.8 GHz)
-\item Liczba procesorów fizycznych: 6
+\item Liczba procesorów fizycznych: 3
 \item Liczba procesorów logicznych: 6
 \item Liczba uruchamianych w systemie wątków: 6
 \item Wielkość i organizacja pamięci podręcznych procesora:\\
@@ -84,7 +84,7 @@ W powyższej funkcji pętla w 6. wierszu iteruje po kolumnach macierzy $A$ i po 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{./images/3/lokIn.png}
+	\includegraphics[bb=0 0 1280 960]{./images/3/lokIn.png}
 	\caption{Zasoby wykorzystywane w pętli wewnętrznej}
 	\label{fig:3inner}
 \end{figure}
@@ -93,7 +93,7 @@ Powyższy rysunek przedstawia dokładnie, które dane są wykorzystywane do prze
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{./images/3/lokMed.png}
+	\includegraphics[bb=0 0 1280 960]{./images/3/lokMed.png}
 	\caption{Zasoby wykorzystywane w pętli środkowej}
 	\label{fig:3medium}
 \end{figure}
@@ -167,11 +167,39 @@ Należy zatem posłużyć się wzorem:
 Wynikiem jest:
 \[ n_R = n_A = n_B = 1447\]
 
-Aby zaobserwować spadek prędkości, eksperyment zostanie przeprowadzony na dwóch rozmiarach instancji: 1400,  1500 oraz 1600.
+Eksperyment zostanie przeprowadzony na dwóch rozmiarach instancji: 1400,  1500 oraz 1600.
 
 
 \subsection{Wyniki}
-asdf
+Instruction per Cycle (IPC) - stosunek wykonanych istrukcji i liczby cykli zegara, im większa jest to wartość, tym więcej wykonujemy instrukcji na cykl, a więc wykorzystanie procesora jest lepsze.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[bb=0 0 1280 960]{./images/wykresy/IPC.png}
+	\caption{Zasoby wykorzystywane w pętli środkowej}
+	\label{fig:3medium}
+\end{figure}
+
+Data cache miss ratio - stosunek nietrafień do pamięci podręcznej i wszystkich dostępów zrealizowanych. Im mniejszy jest ten wynik, tym rzadziej trzeba odwoływać się dalej, niż do pamięci podręcznej. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[bb=0 0 1280 960]{./images/wykresy/Data Cache miss ratio.png}
+	\caption{Zasoby wykorzystywane w pętli środkowej}
+	\label{fig:3medium}
+\end{figure}
+
+Data cache miss rate - stosunek nietrafień do pamięci podręcznej i wykonanych instrukcji. Im większa jest ta wartość, tym wolniej realizowane jest przetwarzanie.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[bb=0 0 1280 960]{./images/wykresy/Data Cache miss rate.png}
+	\caption{Zasoby wykorzystywane w pętli środkowej}
+	\label{fig:3medium}
+\end{figure}
+
+
+
 \subsection{Prezentacja wzorców}
 asdf
 \subsection{Miary przetwarzania}
@@ -179,8 +207,6 @@ asdf
 
 \section{Wnioski}
 Data Cache miss ratio - jest to stosunek nietrafień do pamięci podręcznej do dostępów zrealizowanych.
-\n
-Dla wersji 3 pętlowej równolegle: 0,0018
 
 
 \subsection{Wypunktowania}
