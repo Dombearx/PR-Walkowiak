@@ -176,7 +176,7 @@ Instruction per Cycle (IPC) - stosunek wykonanych istrukcji i liczby cykli zegar
 \begin{figure}[H]
 	\centering
 	\includegraphics[bb=0 0 1280 960]{./images/wykresy/IPC.png}
-	\caption{Zasoby wykorzystywane w pętli środkowej}
+	\caption{Instruction per Cycle}
 	\label{fig:3medium}
 \end{figure}
 
@@ -185,7 +185,7 @@ Data cache miss ratio - stosunek nietrafień do pamięci podręcznej i wszystkic
 \begin{figure}[H]
 	\centering
 	\includegraphics[bb=0 0 1280 960]{./images/wykresy/Data Cache miss ratio.png}
-	\caption{Zasoby wykorzystywane w pętli środkowej}
+	\caption{Data cache miss ratio}
 	\label{fig:3medium}
 \end{figure}
 
@@ -194,9 +194,24 @@ Data cache miss rate - stosunek nietrafień do pamięci podręcznej i wykonanych
 \begin{figure}[H]
 	\centering
 	\includegraphics[bb=0 0 1280 960]{./images/wykresy/Data Cache miss rate.png}
-	\caption{Zasoby wykorzystywane w pętli środkowej}
+	\caption{Data Cache miss rate}
 	\label{fig:3medium}
 \end{figure}
+
+\subsection{Analiza przyspieszenia}
+
+Algorytmy równoległe trój oraz sześciopętlowe zostały porównane pod względem czasu przetwarzania z algorytmem sekwencyjnym. Wykres przedstawia iloraz czasu przetwarzania najlepszej znanej metody sekwencyjnej i czasu obliczeń równoległych.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[bb=0 0 1280 960]{./images/wykresy/Analiza przyspieszenia.png}
+	\caption{Analiza przyspieszenia}
+	\label{fig:3medium}
+\end{figure}
+
+Wykres pokazuje, że realizacja równoległa za pomocą metody 3 pętlowej wypada zdecydowanie gorzej niż metoda sekwencyjna. Kolejność JIK mnożenia macierzy wypada wyjątkowo słabo. Spowodowane to jest słabą lokalnością przestrzenną danych, iteracje używają całych kolumn, które wymagają sprowadzania całych wierszy z pamięci. Z tego powodu często pojawiają się nietrafienia do pamięci podręcznej z powodu jej ograniczonej pojemności. Przetwarzanie za pomocą kolumn sprawia, że pojawia się problem false sharingu, który dodatkowo niekorzystnie wpływa na czas przetwarzania.
+
+Wersja sześciopętlowa ijk, iikkjj, osiąga nawet 6 krotnie przyspieszenie względem wersji sekwencyjnej. Im większa instancja tym większa korzyść wynika z użycia algorytmu dzielącego macierz na podmacierze. Mniej danych trzeba jednocześnie sprowadzać do pamięci współdzielonej, więc nie następuje przepełnienie jej. Z tego powodu nie trzeba odwoływać się do wolniejszych pamięci i całe przetwarzanie realizowane jest szybciej. 
 
 
 
@@ -206,7 +221,7 @@ asdf
 asdf
 
 \section{Wnioski}
-Data Cache miss ratio - jest to stosunek nietrafień do pamięci podręcznej do dostępów zrealizowanych.
+
 
 
 \subsection{Wypunktowania}
@@ -237,5 +252,5 @@ E = mc^2
 \end{equation}
 
 \section{Podsumowanie}
-
+Nieodpowiedni dobór algorytmu równoległego do zadania nie tylko powoduje nie uzyskanie przyspieszenia przetwarzania, ale także może spowodować znaczne spowolnienie względem wersji sekwencyjnej. Przed zastosowaniem algorytmu równoległego, należy przeprowadzić dogłębną analizę sposobu przetwarzania danych przez algorytm, aby wybrać jego optymalną implementację.
 \end{document}
